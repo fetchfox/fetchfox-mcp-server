@@ -38,10 +38,16 @@ server.addTool({
       reportProgress(progress);
     }, 5_000);
 
+    let done = false;
+
     try {
       const job = await fox.extract.detach(args);
 
       job.on('progress', (data) => {
+        if (done) {
+          return;
+        }
+
         if (data?.progress?.progress && data?.progress?.total) {
           const factor = 100 / data.progress.total;
           progress = {
@@ -53,6 +59,7 @@ server.addTool({
       });
 
       const data = await job.finished();
+      done = true;
       return JSON.stringify(data);
 
     } finally {
