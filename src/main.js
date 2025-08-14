@@ -45,5 +45,9 @@ server.addTool({
 });
 
 server.start({
-  transportType: 'stdio',
+  transportType: 'httpStream',
+  httpStream: {
+    port: process.env.PORT || 3333,
+    stateless: true,
+  },
 });
