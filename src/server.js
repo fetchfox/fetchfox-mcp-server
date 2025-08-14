@@ -4,16 +4,28 @@ import * as fox from 'fetchfox-sdk';
 
 fox.configure({
   host: 'https://dev.api.fetchfox.ai',
-})
+});
 
-const server = new FastMCP({
+export const server = new FastMCP({
   name: 'FetchFox',
   version: '0.0.1',
 });
 
 server.addTool({
+  name: 'add',
+  description: 'Add two numbers',
+  parameters: z.object({
+    a: z.number(),
+    b: z.number(),
+  }),
+  execute: async (args) => {
+    return String(args.a + args.b);
+  },
+});
+
+server.addTool({
   name: 'extract',
-  description: 'Scraper function to extract data from a specific URL, or a list of URLs, converteing it into structured data.',
+  description: 'Scraper function to extract data from a specific URL, or a list of URLs, converting it into structured data.',
   parameters: z.object({
     urls: z.array(z.string().url()),
     template: z.string(),
@@ -30,9 +42,14 @@ server.addTool({
       const job = await fox.extract.detach(args);
 
       job.on('progress', (data) => {
-        progress = data?.progress;
-        log.info('FetchFox progress:', progress);
-        reportProgress(progress);
+        if (data?.progress?.progress && data?.progress?.total) {
+          const factor = 100 / data.progress.total;
+          progress = {
+            progress: Math.floor(data.progress.progress * factor),
+            total: 100,
+          };
+          reportProgress(progress);
+        }
       });
 
       const data = await job.finished();
@@ -41,13 +58,5 @@ server.addTool({
     } finally {
       clearInterval(intervalId);
     }
-  },
-});
-
-server.start({
-  transportType: 'httpStream',
-  httpStream: {
-    port: process.env.PORT || 3333,
-    stateless: true,
   },
 });

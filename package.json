@@ -5,7 +5,8 @@
   "main": "src/main.js",
   "type": "module",
   "scripts": {
-    "start": "node src/main.js",
+    "stdio": "node src/stdio.js",
+    "http": "node src/http.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky"
   },
