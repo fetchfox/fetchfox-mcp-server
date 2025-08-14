@@ -2,10 +2,25 @@
   "name": "fetchfox-mcp-server",
   "version": "1.0.0",
   "description": "Official MCP Server for FetchFox AI scraper",
-  "main": "index.js",
+  "main": "src/main.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.2",
+    "fastmcp": "^3.14.4",
+    "fetchfox-sdk": "^1.0.13"
+  },
+  "lint-staged": {
+    "*.{js}": "prettier --write"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7",
+    "prettier": "^3.6.2"
+  }
 }
