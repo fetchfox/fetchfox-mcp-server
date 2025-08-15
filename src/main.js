@@ -73,5 +73,7 @@ const handleSessionRequest = async (req, res) => {
 app.get('/mcp', handleSessionRequest);
 app.delete('/mcp', handleSessionRequest);
 
-console.log('listen on 3000');
-app.listen(3000);
+const port = process.env.PORT || 3000;
+
+console.log(`Listen on ${port}`);
+app.listen(port);

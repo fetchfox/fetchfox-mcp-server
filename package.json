@@ -16,7 +16,6 @@
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.2",
     "express": "^5.1.0",
-    "fastmcp": "^3.14.4",
     "fetchfox-sdk": "^1.0.18"
   },
   "lint-staged": {
