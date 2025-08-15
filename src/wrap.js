@@ -7,11 +7,11 @@ export const wrap = (name) => {
       apiKey: session.apiKey,
     });
 
-    log.info(`FetchFox run ${name}`);
+    // log.info(`FetchFox run ${name}`);
 
     let progress = { progress: 0, total: 100 };
     const intervalId = setInterval(() => {
-      reportProgress(progress);
+      // reportProgress(progress);
     }, 5_000);
 
     let done = false;

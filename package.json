@@ -5,8 +5,9 @@
   "main": "src/main.js",
   "type": "module",
   "scripts": {
-    "stdio": "node src/stdio.js",
+    "lint": "eslint src/ --fix",
     "http": "node src/http.js",
+    "http:dev": "nodemon src/http.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky"
   },
@@ -14,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.2",
+    "express": "^5.1.0",
     "fastmcp": "^3.14.4",
     "fetchfox-sdk": "^1.0.18"
   },
@@ -21,7 +23,11 @@
     "*.{js}": "prettier --write"
   },
   "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "eslint": "^9.33.0",
+    "eslint-plugin-promise": "^7.2.1",
     "husky": "^9.1.7",
+    "nodemon": "^3.1.10",
     "prettier": "^3.6.2"
   }
 }
