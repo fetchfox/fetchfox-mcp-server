@@ -60,20 +60,6 @@ export const server = new McpServer({
 });
 
 server.registerTool(
-  'echo',
-  {
-    title: 'Echo Message Tool',
-    description: 'Echo back a message',
-    inputSchema: {
-      message: z.string(),
-    },
-  },
-  async ({ message }) => ({
-    content: [{ type: 'text', text: String('Echo: ' + message) }]
-  })
-);
-
-server.registerTool(
   'crawl',
   {
     title: 'Web Crawling Tool',
